@@ -14,13 +14,11 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var orm = require("./config/orm.js");
-
+// var orm = require("./config/orm.js");
+var routes = require("./controllers/burgers_controller.js");
 // Console log all the party_name's.
 
-app.get("/", function(req, res) {
-  orm.selectAll("*", "parties");
-});
+app.use("/", routes);
 
 app.listen(PORT, function() {
   console.log("listening on port: " + PORT);
